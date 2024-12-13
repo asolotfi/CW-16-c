@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماشین حساب ساده</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="calculator">
+        <input placeholder="0" type="text" class="display" id="display" disabled>
+        <div class="buttons">
+            <button class="button operator" onclick="appendToDisplay('+')">+</button>
+            <button class="button" onclick="appendToDisplay('7')">7</button>
+            <button class="button" onclick="appendToDisplay('8')">8</button>
+            <button class="button" onclick="appendToDisplay('9')">9</button>
+            <button class="button operator" onclick="appendToDisplay('/')">÷</button>
+
+            <button class="button" onclick="appendToDisplay('4')">4</button>
+            <button class="button" onclick="appendToDisplay('5')">5</button>
+            <button class="button" onclick="appendToDisplay('6')">6</button>
+            <button class="button operator" onclick="appendToDisplay('*')">×</button>
+
+            <button class="button" onclick="appendToDisplay('1')">1</button>
+            <button class="button" onclick="appendToDisplay('2')">2</button>
+            <button class="button" onclick="appendToDisplay('3')">3</button>
+            <button class="button operator" onclick="appendToDisplay('-')">-</button>
+
+            <button class="button" onclick="appendToDisplay('0')">0</button>
+            <button class="button operator" onclick="appendToDisplay('.')">.</button>
+            <button class="button operator" onclick="clearDisplay()">C</button>
+            <button class="button operator" style="grid-column: span 4;" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        let isResultDisplayed = false;
+        function appendToDisplay(value) {
+            if(isResultDisplayed){
+                display.value = value;
+                isResultDisplayed=false;
+            }
+            else{
+                display.value += value;
+            }  
+        }
+        function calculateResult() {
+            try {
+                display.value = eval(display.value);
+                isResultDisplayed=true;
+            }
+            catch {
+                display.value = 'Erorr'
+                isResultDisplayed=true;
+            }
+        }
+        function clearDisplay() {
+            display.value = '';
+            isResultDisplayed=false;
+        }
+    </script>
+</body>
+
+</html>
